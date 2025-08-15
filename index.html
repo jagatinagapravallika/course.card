@@ -26,14 +26,42 @@
             background: #333;
             border-radius: 5px;
         }
+        .custom-navbar {
+            background: linear-gradient(45deg, #0d0d0d, #1a1a2e, #16213e);
+            padding: 0.8rem 1rem;
+            box-shadow: 0px 4px 20px rgba(0, 229, 255, 0.2);
+        }
+        .custom-navbar .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #6c63ff, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+        .custom-navbar .nav-link:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0px 0px 8px rgba(0, 229, 255, 0.4);
+        }
+        .custom-navbar .navbar-toggler {
+            background-color: white;
+        }
 
         /* Cards */
         .course-card img {
             height: 150px;
             object-fit: cover;
+            border-radius: 10px 10px 0 0;
         }
         .course-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
         }
         .course-card:hover {
             transform: translateY(-5px);
@@ -64,15 +92,85 @@
             font-style: italic;
             color: #555;
         }
+        .btn-gradient {
+            background: linear-gradient(45deg, #6c63ff, #00e5ff);
+            color: white;
+            border: none;
+            transition: 0.3s ease;
+        }
+        .btn-gradient:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 5px 15px rgba(0, 229, 255, 0.5);
+             color: white;
+        }
+
+        .custom-table {
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+        }
+        .custom-table thead {
+            background: linear-gradient(45deg, #6c63ff, #00e5ff);
+            color: white;
+            font-weight: bold;
+        }
+        .custom-table th,
+        .custom-table td {
+            padding: 14px;
+            vertical-align: middle;
+        }
+        .custom-table tbody tr {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .custom-table tbody tr:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            transform: scale(1.01);
+        }
+        .custom-table tbody tr.active {
+            background-color: rgba(0, 229, 255, 0.15) !important;
+        }
+        .active-cell {
+            background-color: rgba(108, 99, 255, 0.2) !important;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #6c63ff, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 50%;
+            background: linear-gradient(45deg, #6c63ff, #00e5ff);
+            transition: width 0.3s ease;
+        }
+        .section-title:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
-<body>
+<body class="mb-5 pb-5">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Code Before Chill</a>
-        <div class="collapse navbar-collapse justify-content-end">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link nav-alert" href="#" data-alert="Home">Home</a></li>
                 <li class="nav-item"><a class="nav-link nav-alert" href="#" data-alert="About">About</a></li>
@@ -84,19 +182,20 @@
 </nav>
 
 <div class="container mt-4">
-    <h3>Course Cards</h3>
+    <h3 class="section-title">Our Courses</h3>
     <div class="row" id="courseCards"></div>
 
-    <h3 class="mt-4">Courses Table</h3>
-    <table class="table table-bordered bg-white">
-        <thead>
-            <tr>
-                <th>Course Name</th>
-                <th>Duration</th>
-            </tr>
-        </thead>
-        <tbody id="courseTableBody"></tbody>
-    </table>
+    <h3 class="section-title mt-4">Courses Table</h3>
+    <table class="table table-bordered custom-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Duration</th>
+        </tr>
+    </thead>
+    <tbody id="courseTableBody"></tbody>
+</table>
 </div>
 
 <script src="card.js"></script>
